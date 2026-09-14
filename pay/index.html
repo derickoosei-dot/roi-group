@@ -20,7 +20,7 @@
   </header>
   <main>
     <h1>Pay rent</h1>
-    <p class="lede">Preferred method: <strong style="color:var(--ink)">Zelle</strong> to <strong style="color:var(--ink)">ROI Group LLC</strong> at Chase.</p>
+    <p class="lede">Preferred method: <strong style="color:var(--ink)">Zelle</strong> to <strong style="color:var(--ink)">ROI Group LLC</strong> (no card fee).</p>
 
     <section>
       <h2>1. Zelle (preferred)</h2>
@@ -28,7 +28,7 @@
         Send via Zelle to:<br />
         <a href="mailto:payments@roigroupllc.com"><strong>payments@roigroupllc.com</strong></a><br /><br />
         Payee name: ROI Group LLC<br />
-        Bank: Chase Business Checking (ending 5585)<br />
+        Bank: Chase<br />
         Memo: your address + unit
       </div>
       <p class="note">Do not send rent to ROI 1 INC, Steady Ground, Atlantic Meridian, or any personal account.</p>
@@ -44,9 +44,10 @@
     <section>
       <h2>3. Card checkout</h2>
       <div class="card">
-        <strong>Not available yet</strong>
-        <p style="margin-top:8px;">Online card pay may open later. Zelle remains the preferred method (lower cost, same business account).</p>
-        <button class="btn block" type="button" disabled title="Not enabled">Pay now — not enabled</button>
+        <strong>Card accepted</strong>
+        <p style="margin-top:8px;">A convenience fee is charged to the cardholder (not absorbed by ROI Group). Zelle has no fee and remains preferred.</p>
+        <a class="btn block" id="pay-now" href="#card-pending" aria-disabled="true">Pay now</a>
+        <p class="note" id="card-pending" style="margin-top:12px;">Checkout link activating — check back shortly, or use Zelle above.</p>
       </div>
     </section>
 
