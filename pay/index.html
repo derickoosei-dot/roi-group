@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pay rent — ROI Group Rentals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <a class="mark" href="/">ROI Group Rentals</a>
+    <nav>
+      <a class="active" href="/pay/">Pay rent</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Pay rent</h1>
+    <p class="lede">Payments go to <strong style="color:var(--ink)">ROI Group LLC</strong> at Chase.</p>
+
+    <section>
+      <h2>Online checkout</h2>
+      <div class="card">
+        <strong>Card / bank pay (Chase-linked)</strong>
+        <p style="margin-top:8px;">Checkout deposits to the ROI Group Chase business checking after the bank is connected and go-live is approved.</p>
+        <button class="btn block" type="button" disabled title="Waiting for Chase bank link">Pay now — coming online</button>
+        <p class="note">Status: waiting on Chase account link + go-live yes.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>ACH / Zelle to Chase</h2>
+      <div class="payee">
+        ROI Group LLC<br />
+        Chase Business Checking<br />
+        Account ending: <span id="acct-last4">5585</span><br />
+        Memo: your address + unit
+      </div>
+      <p class="note">Do not send rent to ROI 1 INC, Steady Ground, or personal accounts.</p>
+    </section>
+
+    <section>
+      <h2>Your payment</h2>
+      <label for="memo">Address / unit (for memo)</label>
+      <input id="memo" type="text" autocomplete="street-address" placeholder="Your address and unit" />
+      <label for="amount">Amount (USD)</label>
+      <input id="amount" type="number" min="1" step="0.01" placeholder="e.g. 1850" />
+      <label for="tenant">Your name</label>
+      <input id="tenant" type="text" autocomplete="name" placeholder="Full name" />
+    </section>
+  </main>
+  <footer>ROI Group Rentals · Tenant payments · Chase business checking</footer>
+</body>
+</html>
