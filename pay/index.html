@@ -15,37 +15,44 @@
     <a class="mark" href="/">ROI Group Rentals</a>
     <nav>
       <a class="active" href="/pay/">Pay rent</a>
+      <a href="/maintenance/">Maintenance</a>
     </nav>
   </header>
   <main>
     <h1>Pay rent</h1>
-    <p class="lede">Payments go to <strong style="color:var(--ink)">ROI Group LLC</strong> at Chase.</p>
+    <p class="lede">Preferred method: <strong style="color:var(--ink)">Zelle</strong> to <strong style="color:var(--ink)">ROI Group LLC</strong> at Chase.</p>
 
     <section>
-      <h2>Online checkout</h2>
-      <div class="card">
-        <strong>Card / bank pay (Chase-linked)</strong>
-        <p style="margin-top:8px;">Checkout deposits to the ROI Group Chase business checking after the bank is connected and go-live is approved.</p>
-        <button class="btn block" type="button" disabled title="Waiting for Chase bank link">Pay now — coming online</button>
-        <p class="note">Status: waiting on Chase account link + go-live yes.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>ACH / Zelle to Chase</h2>
+      <h2>1. Zelle (preferred)</h2>
       <div class="payee">
-        ROI Group LLC<br />
-        Chase Business Checking<br />
-        Account ending: <span id="acct-last4">5585</span><br />
-        Zelle / payee email: <a href="mailto:payments@roigroupllc.com">payments@roigroupllc.com</a><br />
+        Send via Zelle to:<br />
+        <a href="mailto:payments@roigroupllc.com"><strong>payments@roigroupllc.com</strong></a><br /><br />
+        Payee name: ROI Group LLC<br />
+        Bank: Chase Business Checking (ending 5585)<br />
         Memo: your address + unit
       </div>
-      <p class="note">Do not send rent to ROI 1 INC, Steady Ground, or personal accounts.</p>
+      <p class="note">Do not send rent to ROI 1 INC, Steady Ground, Atlantic Meridian, or any personal account.</p>
     </section>
 
     <section>
-      <h2>Your payment</h2>
-      <label for="memo">Address / unit (for memo)</label>
+      <h2>2. Money order (backup only)</h2>
+      <div class="card">
+        <p style="margin-top:0;">If you cannot use Zelle, a money order payable to <strong>ROI Group LLC</strong> is accepted. Include your address and unit on the memo line. Ask your property contact for drop-off or mail instructions.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Card checkout</h2>
+      <div class="card">
+        <strong>Not available yet</strong>
+        <p style="margin-top:8px;">Online card pay may open later. Zelle remains the preferred method (lower cost, same business account).</p>
+        <button class="btn block" type="button" disabled title="Not enabled">Pay now — not enabled</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Your payment notes</h2>
+      <label for="memo">Address / unit (for Zelle memo)</label>
       <input id="memo" type="text" autocomplete="street-address" placeholder="Your address and unit" />
       <label for="amount">Amount (USD)</label>
       <input id="amount" type="number" min="1" step="0.01" placeholder="e.g. 1850" />
@@ -53,6 +60,6 @@
       <input id="tenant" type="text" autocomplete="name" placeholder="Full name" />
     </section>
   </main>
-  <footer>ROI Group Rentals · Tenant payments · Chase business checking</footer>
+  <footer>ROI Group Rentals · Tenant payments · Zelle to payments@roigroupllc.com</footer>
 </body>
 </html>
