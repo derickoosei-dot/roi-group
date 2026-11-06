@@ -20,38 +20,69 @@
   </header>
   <main>
     <h1>Pay rent</h1>
-    <p class="lede">Choose how to pay <strong style="color:var(--ink)">ROI Group LLC</strong>. Electronic only — Zelle (no fee, preferred) or card via Stripe (processing fees may apply). No cash or money orders.</p>
+    <p class="lede">Pay <strong style="color:var(--ink)">ROI Group LLC</strong> electronically. <strong>Zelle is preferred (no fee).</strong> Card is available with a processing convenience fee paid by you — never absorbed by ROI. No cash or money orders.</p>
 
     <section>
       <h2>1. Zelle (no fee — preferred)</h2>
       <div class="payee">
-        Send via Zelle to:<br />
-        <a href="mailto:payments@roigroupllc.com"><strong>payments@roigroupllc.com</strong></a><br /><br />
-        Payee name: ROI Group LLC<br />
-        Memo: your address + unit
+        Payee name: <strong>ROI Group LLC</strong><br />
+        Memo: your address + unit<br /><br />
+        Ask your property contact for the current Zelle email or phone to send to. (Business bank receive ID is being enrolled — we will not list an inactive Zelle address here.)
       </div>
     </section>
 
     <section>
-      <h2>2. Card (convenience fee applies)</h2>
+      <h2>2. Card (you pay the processing fee)</h2>
       <div class="card">
-        <p style="margin-top:0;">Pay by card online via Stripe. Prefer Zelle above when you can (no fee). Card processing fees may apply.</p>
-        <a class="btn block" id="pay-now" href="https://buy.stripe.com/fZuaEW6kU5Zzbzc6dZeIw00" target="_blank" rel="noopener noreferrer">Pay now</a>
-        <p class="note" style="margin-top:12px;">Opens Stripe Checkout in a new tab. Include your address/unit in the payment notes if prompted.</p>
+        <p style="margin-top:0;">Pay by card online via Stripe. Prefer Zelle above when you have the receive ID (no fee).</p>
+        <p style="margin:0 0 12px;"><strong>Card processing convenience fee:</strong> you pay Stripe’s card rate so ROI receives your rent — about <strong>2.9% + $0.30</strong> on the total charged (same as Stripe’s processing cost). Exact fee and total are shown below before you continue. Debit/prepaid and wallets may still be offered by Stripe; when a separate compliant surcharge line is enabled in Stripe, only eligible credit cards are surcharged.</p>
+        <label for="rent">Rent amount due (USD)</label>
+        <input id="rent" type="number" min="1" step="0.01" placeholder="e.g. 1850" />
+        <p id="fee-breakdown" class="note" style="margin-top:12px;" hidden></p>
+        <a class="btn block" id="pay-now" href="https://buy.stripe.com/fZuaEW6kU5Zzbzc6dZeIw00" target="_blank" rel="noopener noreferrer">Pay now with card</a>
+        <p class="note" style="margin-top:12px;">Opens Stripe Checkout in a new tab. Enter the <strong>total</strong> shown above (rent + fee) as the amount, and your address/unit in the notes if prompted. You can cancel or choose another method before confirming.</p>
       </div>
     </section>
-
 
     <section>
       <h2>Your payment notes</h2>
-      <label for="memo">Address / unit (for Zelle memo)</label>
+      <label for="memo">Address / unit (for Zelle memo / card notes)</label>
       <input id="memo" type="text" autocomplete="street-address" placeholder="Your address and unit" />
-      <label for="amount">Amount (USD)</label>
-      <input id="amount" type="number" min="1" step="0.01" placeholder="e.g. 1850" />
       <label for="tenant">Your name</label>
       <input id="tenant" type="text" autocomplete="name" placeholder="Full name" />
     </section>
   </main>
-  <footer>ROI Group Rentals · Tenant payments · Zelle to payments@roigroupllc.com</footer>
+  <footer>ROI Group Rentals · Tenant payments · Zelle preferred (no fee) · Card: tenant pays processing fee</footer>
+  <script>
+    (function () {
+      var rentEl = document.getElementById('rent');
+      var breakdown = document.getElementById('fee-breakdown');
+      var pay = document.getElementById('pay-now');
+      var base = 'https://buy.stripe.com/fZuaEW6kU5Zzbzc6dZeIw00';
+      function money(n) {
+        return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      }
+      function update() {
+        var rent = parseFloat(rentEl.value);
+        if (!isFinite(rent) || rent <= 0) {
+          breakdown.hidden = true;
+          pay.href = base;
+          return;
+        }
+        // Gross-up so after Stripe's 2.9% + $0.30, ROI nets approximately the rent due.
+        var total = Math.ceil(((rent + 0.30) / 0.971) * 100) / 100;
+        var fee = Math.round((total - rent) * 100) / 100;
+        breakdown.hidden = false;
+        breakdown.innerHTML =
+          'Rent due: <strong>' + money(rent) + '</strong><br />' +
+          'Card processing convenience fee: <strong>' + money(fee) + '</strong><br />' +
+          'Total to enter at checkout: <strong>' + money(total) + '</strong>';
+        var cents = Math.round(total * 100);
+        pay.href = base + '?__prefilled_amount=' + cents;
+      }
+      rentEl.addEventListener('input', update);
+      update();
+    })();
+  </script>
 </body>
 </html>
